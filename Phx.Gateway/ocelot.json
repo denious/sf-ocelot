@@ -1,0 +1,19 @@
+﻿{
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8216,
+      "Type": "ServiceFabric"
+    }
+  },
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/svc/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "ServiceName": "Phx.WebFabric/Phx.Service",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http"
+    }
+  ]
+}

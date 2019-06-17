@@ -3,7 +3,7 @@
     "RequestIdKey": "OcRequestId",
     "ServiceDiscoveryProvider": {
       "Host": "localhost",
-      "Port": 8216,
+      "Port": 19081,
       "Type": "ServiceFabric"
     }
   },

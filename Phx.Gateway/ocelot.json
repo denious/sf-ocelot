@@ -14,6 +14,13 @@
       "ServiceName": "Phx.WebFabric/Phx.Service",
       "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http"
+    },
+    {
+      "UpstreamPathTemplate": "/webuser/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "ServiceName": "Phx.WebFabric/Phx.Service",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http"
     }
   ]
 }

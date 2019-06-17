@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Phx.Service
 {
@@ -20,8 +21,14 @@ namespace Phx.Service
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Verbose()
+                    .Enrich.FromLogContext()
+                    .WriteTo.Debug()
+                    .CreateLogger();
+
                 ServiceRuntime.RegisterServiceAsync("Phx.ServiceType",
-                    context => new Service(context)).GetAwaiter().GetResult();
+                    context => new Service(context, Log.Logger)).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Service).Name);
 

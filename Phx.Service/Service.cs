@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
-using Microsoft.ServiceFabric.Data;
+using Serilog;
+using Serilog.Core.Enrichers;
+using ILogger = Serilog.ILogger;
 
 namespace Phx.Service
 {
@@ -19,9 +18,23 @@ namespace Phx.Service
     /// </summary>
     internal sealed class Service : StatelessService
     {
-        public Service(StatelessServiceContext context)
+        public ILogger<Service> Logger { get; }
+
+        public Service(StatelessServiceContext context, ILogger logger)
             : base(context)
-        { }
+        {
+            PropertyEnricher[] properties = new PropertyEnricher[]
+            {
+                new PropertyEnricher("ServiceTypeName", context.ServiceTypeName),
+                new PropertyEnricher("ServiceName", context.ServiceName),
+                new PropertyEnricher("PartitionId", context.PartitionId),
+                new PropertyEnricher("InstanceId", context.ReplicaOrInstanceId),
+            };
+
+            logger.ForContext(properties);
+
+            Logger = new LoggerFactory().AddSerilog(logger.ForContext(properties)).CreateLogger<Service>();
+        }
 
         /// <summary>
         /// Optional override to create listeners (like tcp, http) for this service instance.
@@ -43,8 +56,9 @@ namespace Phx.Service
                                             .AddSingleton<StatelessServiceContext>(serviceContext))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
-                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
+                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
                                     .UseUrls(url)
+                                    .UseSerilog()
                                     .Build();
                     }))
             };

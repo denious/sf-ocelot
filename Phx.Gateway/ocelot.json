@@ -9,18 +9,14 @@
   },
   "ReRoutes": [
     {
-      "UpstreamPathTemplate": "/svc/{url}",
+      "UpstreamPathTemplate": "/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "ServiceName": "Phx.WebFabric/Phx.Service",
       "DownstreamPathTemplate": "/{url}",
-      "DownstreamScheme": "http"
-    },
-    {
-      "UpstreamPathTemplate": "/webuser/{url}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "ServiceName": "Phx.WebFabric/Phx.Service",
-      "DownstreamPathTemplate": "/{url}",
-      "DownstreamScheme": "http"
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ADB2C"
+      }
     }
   ]
 }

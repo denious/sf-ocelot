@@ -53,29 +53,25 @@ namespace Phx.Gateway
                         ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
 
                         return new WebHostBuilder()
-                                    .UseKestrel()
-                                    .UseContentRoot(Directory.GetCurrentDirectory())
-                                    .ConfigureAppConfiguration((hostingContext, config) =>
-                                    {
-                                        config
-                                            .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                                            .AddJsonFile("appsettings.json", false, true)
-                                            .AddJsonFile(
-                                                $"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-                                                true)
-                                            .AddJsonFile("ocelot.json", false, true)
-                                            .AddEnvironmentVariables();
-                                    })
-                                    .ConfigureServices(
-                                        services => services
-                                            .AddSingleton<StatelessServiceContext>(serviceContext)
-                                            .AddOcelot())
-                                    .UseStartup<Startup>()
-                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
-                                    .UseUrls(url)
-                                    .UseSerilog()
-                                    .Configure(app => { app.UseOcelot().Wait(); })
-                                    .Build();
+                            .UseKestrel()
+                            .UseContentRoot(Directory.GetCurrentDirectory())
+                            .ConfigureAppConfiguration((hostingContext, config) =>
+                            {
+                                config
+                                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                                    .AddJsonFile("appsettings.json", false, true)
+                                    .AddJsonFile(
+                                        $"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
+                                        true)
+                                    .AddJsonFile("ocelot.json", false, true)
+                                    .AddEnvironmentVariables();
+                            })
+                            .ConfigureServices(services => services.AddSingleton(serviceContext))
+                            .UseStartup<Startup>()
+                            .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
+                            .UseUrls(url)
+                            .UseSerilog()
+                            .Build();
                     }))
             };
         }

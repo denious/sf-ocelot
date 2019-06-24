@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNet.OData.Builder;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
 
-namespace Phx.Service
+namespace Phx.Public.API
 {
     public class Startup
     {
@@ -23,11 +21,12 @@ namespace Phx.Service
             services.AddSingleton(Configuration);
 
             Config.NETCore.PhxNetCoreConfig.Services = services;
-            //Config.NETCore.PhxNetCoreConfig.AddSnapshotCollector();
+            Config.NETCore.PhxNetCoreConfig.AddSnapshotCollector();
             Config.NETCore.PhxNetCoreConfig.AddCors();
             Config.NETCore.PhxNetCoreConfig.AddApi<Startup>();
-            Config.NETCore.PhxNetCoreConfig.AddOData();
-            Config.NETCore.PhxNetCoreConfig.AddMvc(false);
+            Config.NETCore.PhxNetCoreConfig.AddMvc(true);
+
+            IdentityModelEventSource.ShowPII = true;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

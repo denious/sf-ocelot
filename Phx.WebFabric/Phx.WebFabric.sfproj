@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Phx.Gateway\Phx.Gateway.csproj" />
+    <ProjectReference Include="..\Phx.Public.API\Phx.Public.API.csproj" />
     <ProjectReference Include="..\Phx.Service\Phx.Service.csproj" />
   </ItemGroup>
   <ItemGroup>

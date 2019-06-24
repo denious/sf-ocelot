@@ -41,7 +41,7 @@ namespace Phx.Gateway
                 });
             });
 
-            // Add Ocelot integration to allow for authentication checks
+            // Add Ocelot integration
             services.AddOcelot();
 
             services.AddMvc(options =>
@@ -81,9 +81,16 @@ namespace Phx.Gateway
                 .UseCors("AllowAll")
                 .UseMvc();
 
-            app
-                .UseOcelot()
-                .Wait();
+
+            // Add Ocelot integration
+            var configuration = new OcelotPipelineConfiguration
+            {
+                PreQueryStringBuilderMiddleware = async (ctx, next) =>
+                {
+                    await next.Invoke();
+                }
+            };
+            app.UseOcelot(configuration).Wait();
         }
     }
 }

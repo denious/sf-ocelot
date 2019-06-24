@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
@@ -54,7 +55,7 @@ namespace Phx.Gateway
 
                         return new WebHostBuilder()
                             .UseKestrel()
-                            .UseContentRoot(Directory.GetCurrentDirectory())
+                            .UseContentRoot(AppContext.BaseDirectory)
                             .ConfigureAppConfiguration((hostingContext, config) =>
                             {
                                 config

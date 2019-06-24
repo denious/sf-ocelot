@@ -16,6 +16,9 @@
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "ADB2C"
+      },
+      "AddHeadersToRequest": {
+        "Phx-UserId": "Claims[http://schemas.microsoft.com/identity/claims/objectidentifier] > value"
       }
     }
   ]

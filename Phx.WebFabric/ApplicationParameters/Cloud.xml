@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Phx.WebFabric" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="Phx.People.v1_0.Business_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.Cars.v1_0.Business_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.Cars.Business_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.People.Business_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.Cars.API_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.People.API_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.Dependent_InstanceCount" Value="-1" />
+    <Parameter Name="Phx.Communicator_InstanceCount" Value="-1" />
     <Parameter Name="Phx.Public.API_InstanceCount" Value="-1" />
     <Parameter Name="Phx.Service_InstanceCount" Value="-1" />
     <Parameter Name="Phx.Gateway_InstanceCount" Value="-1" />

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,9 +24,7 @@ namespace Phx.Public.API
             Config.NETCore.PhxNetCoreConfig.AddSnapshotCollector();
             Config.NETCore.PhxNetCoreConfig.AddCors();
             Config.NETCore.PhxNetCoreConfig.AddApi<Startup>();
-            Config.NETCore.PhxNetCoreConfig.AddMvc(true);
-
-            IdentityModelEventSource.ShowPII = true;
+            Config.NETCore.PhxNetCoreConfig.AddMvc(false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

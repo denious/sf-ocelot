@@ -29,8 +29,11 @@
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Phx.Cars.API\Phx.Cars.API.csproj" />
+    <ProjectReference Include="..\Phx.Cars.v1_0.Business\Phx.Cars.v1_0.Business.csproj" />
     <ProjectReference Include="..\Phx.Gateway\Phx.Gateway.csproj" />
-    <ProjectReference Include="..\Phx.Public.API\Phx.Public.API.csproj" />
+    <ProjectReference Include="..\Phx.People.API\Phx.People.API.csproj" />
+    <ProjectReference Include="..\Phx.People.v1_0.Business\Phx.People.v1_0.Business.csproj" />
     <ProjectReference Include="..\Phx.Service\Phx.Service.csproj" />
   </ItemGroup>
   <ItemGroup>

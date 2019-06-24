@@ -11,7 +11,7 @@
     {
       "UpstreamPathTemplate": "/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "ServiceName": "Phx.WebFabric/Phx.Service",
+      "ServiceName": "Phx.WebFabric/Phx.Cars.API",
       "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
@@ -20,6 +20,13 @@
       "AddHeadersToRequest": {
         "Phx-UserId": "Claims[http://schemas.microsoft.com/identity/claims/objectidentifier] > value"
       }
+    },
+    {
+      "UpstreamPathTemplate": "/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "ServiceName": "Phx.WebFabric/Phx.People.API",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http"
     }
   ]
 }

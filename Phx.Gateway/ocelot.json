@@ -9,7 +9,7 @@
   },
   "ReRoutes": [
     {
-      "UpstreamPathTemplate": "/{url}",
+      "UpstreamPathTemplate": "/cars/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "ServiceName": "Phx.WebFabric/Phx.Cars.API",
       "DownstreamPathTemplate": "/{url}",
@@ -22,7 +22,7 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/{url}",
+      "UpstreamPathTemplate": "/people/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "ServiceName": "Phx.WebFabric/Phx.People.API",
       "DownstreamPathTemplate": "/{url}",

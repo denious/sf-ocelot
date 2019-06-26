@@ -1,4 +1,4 @@
-﻿using Microsoft.ServiceFabric.Services.Runtime;
+using Microsoft.ServiceFabric.Services.Runtime;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -24,7 +24,9 @@ namespace Phx.Gateway
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Verbose()
                     .Enrich.FromLogContext()
-                    .WriteTo.Debug()
+                    .Enrich.WithAssemblyName()
+                    .WriteTo.Debug(outputTemplate:
+                        "[{Timestamp:HH:mm:ss} {AssemblyName} {Level:u3}] {Message:lj}{NewLine}{Exception}")
                     .CreateLogger();
 
                 ServiceRuntime.RegisterServiceAsync("Phx.GatewayType",

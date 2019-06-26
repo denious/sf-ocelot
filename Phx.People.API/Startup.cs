@@ -1,3 +1,6 @@
+using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -24,12 +27,25 @@ namespace Phx.People.API
             Config.NETCore.PhxNetCoreConfig.AddCors();
             Config.NETCore.PhxNetCoreConfig.AddApi<Startup>();
             Config.NETCore.PhxNetCoreConfig.AddMvc(false);
+
+            // add standalone odata support
+            services.AddOData();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            Phx.Config.NETCore.PhxNetCoreConfig.Configure(app, provider);
+            Config.NETCore.PhxNetCoreConfig.Configure(app, provider, configureRoutes: builder =>
+             {
+                 // add standalone odata support
+                 builder.EnableDependencyInjection();
+
+                 builder
+                     .Select()
+                     .Filter()
+                     .Count()
+                     .OrderBy();
+             });
         }
     }
 }

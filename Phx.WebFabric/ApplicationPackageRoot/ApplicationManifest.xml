@@ -3,18 +3,10 @@
   <Parameters>
     <Parameter Name="Phx.People.v1_0.Business_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.Cars.v1_0.Business_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.Cars.Business_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.People.Business_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.Cars.API_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="Phx.Cars.API_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.People.API_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="Phx.People.API_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.Dependent_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.Communicator_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.Public.API_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Phx.Public.API_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Phx.Service_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Phx.Service_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.Gateway_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="Phx.Gateway_InstanceCount" DefaultValue="-1" />
   </Parameters>
@@ -30,14 +22,6 @@
     <ConfigOverrides />
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.Cars.BusinessPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.People.BusinessPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-  </ServiceManifestImport>
-  <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="Phx.Cars.APIPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
@@ -49,28 +33,6 @@
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Phx.People.API_ASPNETCORE_ENVIRONMENT]" />
-    </EnvironmentOverrides>
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.DependentPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.CommunicatorPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.Public.APIPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Phx.Public.API_ASPNETCORE_ENVIRONMENT]" />
-    </EnvironmentOverrides>
-  </ServiceManifestImport>
-  <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Phx.ServicePkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Phx.Service_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
@@ -96,16 +58,6 @@
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <Service Name="Phx.Cars.Business" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.Cars.BusinessType" InstanceCount="[Phx.Cars.Business_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="Phx.People.Business" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.People.BusinessType" InstanceCount="[Phx.People.Business_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
     <Service Name="Phx.Cars.API" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="Phx.Cars.APIType" InstanceCount="[Phx.Cars.API_InstanceCount]">
         <SingletonPartition />
@@ -113,26 +65,6 @@
     </Service>
     <Service Name="Phx.People.API" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="Phx.People.APIType" InstanceCount="[Phx.People.API_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="Phx.Dependent" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.DependentType" InstanceCount="[Phx.Dependent_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="Phx.Communicator" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.CommunicatorType" InstanceCount="[Phx.Communicator_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="Phx.Public.API" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.Public.APIType" InstanceCount="[Phx.Public.API_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="Phx.Service" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Phx.ServiceType" InstanceCount="[Phx.Service_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>

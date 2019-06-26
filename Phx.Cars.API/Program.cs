@@ -23,7 +23,9 @@ namespace Phx.Cars.API
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Verbose()
                     .Enrich.FromLogContext()
-                    .WriteTo.Debug()
+                    .Enrich.WithAssemblyName()
+                    .WriteTo.Debug(outputTemplate:
+                        "[{Timestamp:HH:mm:ss} {AssemblyName} {Level:u3}] {Message:lj}{NewLine}{Exception}")
                     .CreateLogger();
 
                 ServiceRuntime.RegisterServiceAsync("Phx.Cars.APIType",

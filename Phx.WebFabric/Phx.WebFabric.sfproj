@@ -34,7 +34,6 @@
     <ProjectReference Include="..\Phx.Gateway\Phx.Gateway.csproj" />
     <ProjectReference Include="..\Phx.People.API\Phx.People.API.csproj" />
     <ProjectReference Include="..\Phx.People.v1_0.Business\Phx.People.v1_0.Business.csproj" />
-    <ProjectReference Include="..\Phx.Service\Phx.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

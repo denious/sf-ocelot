@@ -1,7 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using Microsoft.ServiceFabric.Services.Runtime;
+using Autofac;
+using Autofac.Integration.ServiceFabric;
 
 namespace Phx.People.v1_0.Business
 {
@@ -19,13 +20,30 @@ namespace Phx.People.v1_0.Business
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("Phx.People.v1_0.BusinessType",
-                    context => new Business(context)).GetAwaiter().GetResult();
+                // Start with the trusty old container builder.
+                var builder = new ContainerBuilder();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Business).Name);
+                // Register any regular dependencies.
+                //builder.RegisterModule(new LoggerModule(ServiceEventSource.Current.Message));
 
-                // Prevents this host process from terminating so services keep running.
-                Thread.Sleep(Timeout.Infinite);
+                // Register the Autofac magic for Service Fabric support.
+                builder.RegisterServiceFabricSupport();
+
+                // Register a stateless service...
+                builder.RegisterStatelessService<Business>("Phx.People.v1_0.BusinessType");
+
+                // ...and/or register a stateful service.
+                // builder.RegisterStatefulService<DemoStatefulService>("DemoStatefulServiceType");
+
+                using (builder.Build())
+                {
+                    ServiceEventSource.Current.ServiceTypeRegistered(
+                        Process.GetCurrentProcess().Id,
+                        typeof(Business).Name);
+
+                    // Prevents this host process from terminating so services keep running.
+                    Thread.Sleep(Timeout.Infinite);
+                }
             }
             catch (Exception e)
             {

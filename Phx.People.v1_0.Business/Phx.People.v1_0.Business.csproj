@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.ServiceFabric" Version="2.2.0" />
+    <PackageReference Include="Microsoft.ServiceFabric.Diagnostics.Internal" Version="3.4.639" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.4.639" />
     <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.4.639" />
     <PackageReference Include="Serilog.Enrichers.AssemblyName" Version="1.0.9" />

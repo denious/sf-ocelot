@@ -10,13 +10,13 @@ namespace Phx.People.v1_0.Business
 {
     public static class BusinessService
     {
-        public static Uri Uri => new Uri($"{Environment.GetEnvironmentVariable("Fabric_ApplicationName")}/Phx.Cars.v1_0.Business");
+        public static Uri Uri => new Uri($"{Environment.GetEnvironmentVariable("Fabric_ApplicationName")}/Phx.People.v1_0.Business");
     }
 
     /// <summary>
     /// An instance of this class is created for each service instance by the Service Fabric runtime.
     /// </summary>
-    internal sealed class Business : StatelessService, IBusinessClient
+    public class Business : StatelessService, IBusinessClient
     {
         public Business(StatelessServiceContext context)
             : base(context)

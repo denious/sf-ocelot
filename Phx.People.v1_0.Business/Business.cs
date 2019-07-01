@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Fabric;
 using System.Threading.Tasks;
+using Autofac.Features.OwnedInstances;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
+using Phx.People.Data;
 
 namespace Phx.People.v1_0.Business
 {
@@ -18,18 +21,25 @@ namespace Phx.People.v1_0.Business
     /// </summary>
     public class Business : StatelessService, IBusinessClient
     {
-        public Business(StatelessServiceContext context)
+        private readonly Func<Owned<PeopleContext>> _peopleCtx;
+
+        public Business(StatelessServiceContext context, Func<Owned<PeopleContext>> peopleCtx)
             : base(context)
-        { }
+        {
+            _peopleCtx = peopleCtx;
+        }
 
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
             return this.CreateServiceRemotingInstanceListeners();
         }
 
-        public async Task<string> Hello()
+        public async Task<List<Person>> AllPeople()
         {
-            throw new System.NotImplementedException();
+            using (var ctx = _peopleCtx().Value)
+            {
+                return await ctx.People.ToListAsync();
+            }
         }
     }
 }

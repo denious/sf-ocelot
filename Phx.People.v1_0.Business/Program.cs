@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using Autofac;
 using Autofac.Integration.ServiceFabric;
+using Phx.People.Data;
 
 namespace Phx.People.v1_0.Business
 {
@@ -24,7 +25,7 @@ namespace Phx.People.v1_0.Business
                 var builder = new ContainerBuilder();
 
                 // Register any regular dependencies.
-                //builder.RegisterModule(new LoggerModule(ServiceEventSource.Current.Message));
+                builder.RegisterType<PeopleContext>();
 
                 // Register the Autofac magic for Service Fabric support.
                 builder.RegisterServiceFabricSupport();

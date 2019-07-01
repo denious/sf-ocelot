@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Phx.People.Data\Phx.People.Data.csproj" />
     <ProjectReference Include="..\Phx.People.v1_0.Business\Phx.People.v1_0.Business.csproj" />
   </ItemGroup>
 

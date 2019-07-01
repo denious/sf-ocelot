@@ -7,17 +7,19 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "Phx.WebFabric", "Phx.WebFab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phx.Gateway", "Phx.Gateway\Phx.Gateway.csproj", "{FDFA2337-DBBE-4CDD-90E2-A7F7DC1B40FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phx.People.API", "Phx.People.API\Phx.People.API.csproj", "{A69921F2-F9AD-40D0-9F31-80B999DDDC29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phx.People.API", "Phx.People.API\Phx.People.API.csproj", "{A69921F2-F9AD-40D0-9F31-80B999DDDC29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phx.Cars.API", "Phx.Cars.API\Phx.Cars.API.csproj", "{40445BD5-D391-46BD-9AB7-1FFE61133274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phx.Cars.API", "Phx.Cars.API\Phx.Cars.API.csproj", "{40445BD5-D391-46BD-9AB7-1FFE61133274}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "People", "People", "{99E4CFCF-1FE7-427A-9824-8F6FD6EC204A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cars", "Cars", "{B9716B12-4903-4BB4-BE03-770679B9AC09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phx.Cars.v1_0.Business", "Phx.Cars.v1_0.Business\Phx.Cars.v1_0.Business.csproj", "{D3AA31CE-075A-431A-BF47-E7C69554A48E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phx.Cars.v1_0.Business", "Phx.Cars.v1_0.Business\Phx.Cars.v1_0.Business.csproj", "{D3AA31CE-075A-431A-BF47-E7C69554A48E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phx.People.v1_0.Business", "Phx.People.v1_0.Business\Phx.People.v1_0.Business.csproj", "{9C27759E-5AFE-4A66-9C81-A05349DC42A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phx.People.v1_0.Business", "Phx.People.v1_0.Business\Phx.People.v1_0.Business.csproj", "{9C27759E-5AFE-4A66-9C81-A05349DC42A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phx.People.Data", "Phx.People.Data\Phx.People.Data.csproj", "{1D49ED70-AE25-4B85-B612-869B79F6C66D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,14 @@ Global
 		{9C27759E-5AFE-4A66-9C81-A05349DC42A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C27759E-5AFE-4A66-9C81-A05349DC42A5}.Release|x64.ActiveCfg = Release|Any CPU
 		{9C27759E-5AFE-4A66-9C81-A05349DC42A5}.Release|x64.Build.0 = Release|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Debug|x64.Build.0 = Debug|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Release|x64.ActiveCfg = Release|Any CPU
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +94,7 @@ Global
 		{40445BD5-D391-46BD-9AB7-1FFE61133274} = {B9716B12-4903-4BB4-BE03-770679B9AC09}
 		{D3AA31CE-075A-431A-BF47-E7C69554A48E} = {B9716B12-4903-4BB4-BE03-770679B9AC09}
 		{9C27759E-5AFE-4A66-9C81-A05349DC42A5} = {99E4CFCF-1FE7-427A-9824-8F6FD6EC204A}
+		{1D49ED70-AE25-4B85-B612-869B79F6C66D} = {99E4CFCF-1FE7-427A-9824-8F6FD6EC204A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7AB9F17-AE24-44D7-8A04-F527B2114B19}

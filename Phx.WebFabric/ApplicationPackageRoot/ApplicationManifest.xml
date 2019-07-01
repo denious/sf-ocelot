@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="Phx.WebFabricType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="ApplicationInsights_InstrumentationKey" DefaultValue="" />
     <Parameter Name="Phx.People.v1_0.Business_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.Cars.v1_0.Business_InstanceCount" DefaultValue="-1" />
     <Parameter Name="Phx.Cars.API_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
@@ -16,6 +17,9 @@
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="Phx.People.v1_0.BusinessPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ApplicationInsights_InstrumentationKey" Value="[ApplicationInsights_InstrumentationKey]" />
+    </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="Phx.Cars.v1_0.BusinessPkg" ServiceManifestVersion="1.0.0" />
@@ -43,7 +47,7 @@
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <DefaultServices>
-    <!-- The section below creates instances of service types, when an instance of this 
+    <!-- The section below creates instances of service types /> when an instance of this 
          application type is created. You can also create one or more instances of service type using the 
          ServiceFabric PowerShell module.
          

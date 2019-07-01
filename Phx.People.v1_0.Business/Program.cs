@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using Autofac;
 using Autofac.Integration.ServiceFabric;
+using Microsoft.Extensions.Configuration;
 using Phx.People.Data;
 
 namespace Phx.People.v1_0.Business
@@ -24,7 +25,17 @@ namespace Phx.People.v1_0.Business
                 // Start with the trusty old container builder.
                 var builder = new ContainerBuilder();
 
-                // Register any regular dependencies.
+                // Build configuration
+                var config = (IConfiguration)new ConfigurationBuilder()
+                    .AddEnvironmentVariables()
+                    .Build();
+
+                // Register configuration
+                builder.RegisterInstance(config)
+                    .As<IConfiguration>()
+                    .SingleInstance();
+
+                // Register DB context
                 builder.RegisterType<PeopleContext>();
 
                 // Register the Autofac magic for Service Fabric support.
@@ -32,9 +43,6 @@ namespace Phx.People.v1_0.Business
 
                 // Register a stateless service...
                 builder.RegisterStatelessService<Business>("Phx.People.v1_0.BusinessType");
-
-                // ...and/or register a stateful service.
-                // builder.RegisterStatefulService<DemoStatefulService>("DemoStatefulServiceType");
 
                 using (builder.Build())
                 {

@@ -4,6 +4,7 @@ using System.Fabric;
 using System.Threading.Tasks;
 using Autofac.Features.OwnedInstances;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
@@ -21,17 +22,24 @@ namespace Phx.People.v1_0.Business
     /// </summary>
     public class Business : StatelessService, IBusinessClient
     {
+        private readonly IConfiguration _config;
         private readonly Func<Owned<PeopleContext>> _peopleCtx;
 
-        public Business(StatelessServiceContext context, Func<Owned<PeopleContext>> peopleCtx)
-            : base(context)
+        public Business(StatelessServiceContext svcCtx, IConfiguration config, Func<Owned<PeopleContext>> peopleCtx)
+            : base(svcCtx)
         {
+            _config = config;
             _peopleCtx = peopleCtx;
         }
 
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
             return this.CreateServiceRemotingInstanceListeners();
+        }
+
+        public async Task<IEnumerable<IConfigurationSection>> GetConfiguration()
+        {
+            return _config.GetChildren();
         }
 
         public async Task<List<Person>> AllPeople()
